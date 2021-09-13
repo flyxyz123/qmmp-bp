@@ -2,8 +2,6 @@
 #include "decoder_bp.h"
 #include "decoderbpfactory.h"
 
-#include <QMessageBox>
-
 bool DecoderBpFactory::canDecode(QIODevice *) const
 {
     return false;
@@ -70,9 +68,6 @@ void DecoderBpFactory::showSettings(QWidget *parent)
 
 void DecoderBpFactory::showAbout(QWidget *parent)
 {
-    QMessageBox::about (parent, tr("About BP Reader Plugin"),
-                        tr("Qmmp BP Reader Plugin")+"\n"+
-                        tr("Written by: Greedysky <greedysky@163.com>"));
 }
 
 QString DecoderBpFactory::translation() const
