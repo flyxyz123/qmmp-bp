@@ -2,7 +2,7 @@
 #include "decoder_bp.h"
 #include "decoderbpfactory.h"
 
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 
 bool DecoderBpFactory::canDecode(QIODevice *) const
 {
