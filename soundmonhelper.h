@@ -1,6 +1,6 @@
-/* =================================================
+/***************************************************************************
  * This file is part of the TTK qmmp plugin project
- * Copyright (C) 2015 - 2021 Greedysky Studio
+ * Copyright (C) 2015 - 2022 Greedysky Studio
 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,46 +14,42 @@
 
  * You should have received a copy of the GNU General Public License along
  * with this program; If not, see <http://www.gnu.org/licenses/>.
- ================================================= */
+ ***************************************************************************/
 
-#ifndef BPHELPER_H
-#define BPHELPER_H
+#ifndef SOUNDMONHELPER_H
+#define SOUNDMONHELPER_H
 
 #include <QMap>
 #include <QFile>
 #include <qmmp/qmmp.h>
-
-class Player;
-typedef struct {
-    Player *input;
-    int bitrate;
-} decode_info;
+#include <libsoundmon/player.h>
 
 /*!
  * @author Greedysky <greedysky@163.com>
  */
-class BpHelper
+class SoundMonHelper
 {
 public:
-    explicit BpHelper(const QString &path);
-    ~BpHelper();
+    explicit SoundMonHelper(const QString &path);
+    ~SoundMonHelper();
 
     void deinit();
-
     bool initialize();
-    qint64 totalTime() const;
-    void seek(qint64 time);
 
-    int bitrate() const;
-    int sampleRate() const;
-    int channels() const;
-    int bitsPerSample() const;
+    inline void seek(qint64 time) { return m_input->Seek(time); }
+    inline qint64 totalTime() const { return m_input->GetLength(); }
 
+    inline int bitrate() const { return 8; }
+    inline int sampleRate() const { return SAMPLERATE; }
+    inline int channels() const { return 2; }
+    inline int depth() const { return 8; }
+
+    #undef SAMPLERATE
     qint64 read(unsigned char *data, qint64 maxSize);
 
 private:
     QString m_path;
-    decode_info *m_info = nullptr;
+    Player *m_input = nullptr;
 
 };
 

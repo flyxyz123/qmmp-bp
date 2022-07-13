@@ -2,18 +2,18 @@
 # https://github.com/cspiegel/qmmp-adplug
 # https://github.com/cspiegel/qmmp-openmpt
 
-HEADERS += decoderbpfactory.h \
-           decoder_bp.h \
-           bphelper.h
+HEADERS += decodersoundmonfactory.h \
+           decoder_soundmon.h \
+           soundmonhelper.h
     
-SOURCES += decoderbpfactory.cpp \
-           decoder_bp.cpp \
-           bphelper.cpp \
-           libbp/channel.cpp \
-           libbp/instrument.cpp \
-           libbp/module.cpp \
-           libbp/player.cpp \
-           libbp/soundplayer.cpp
+SOURCES += decodersoundmonfactory.cpp \
+           decoder_soundmon.cpp \
+           soundmonhelper.cpp \
+           libsoundmon/channel.cpp \
+           libsoundmon/instrument.cpp \
+           libsoundmon/module.cpp \
+           libsoundmon/player.cpp \
+           libsoundmon/soundplayer.cpp
 
 CONFIG += warn_on plugin link_pkgconfig
 
